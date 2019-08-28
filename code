@@ -1,0 +1,26 @@
+function commonCharacterCount(s1, s2) {
+   
+   //variables to be utilized in the solving of the task
+   
+   var count = 0;
+   var array = s1.split().sort().join('');
+   var array2 = array.split("");
+   
+   //loops through array2 at the same time deducting from it characters
+   //that have been checked to confirm how many times they appear in both
+   //s1 and s2 and adds the least n.o of times to get a total n.o
+   //of times a character appears in both strings 
+   
+   for(;array2.length>0;){
+      //checking of the n.o of times characters appears
+      var check = ((array.match(new RegExp(array2[0],"g"))||[]).length);
+      var check2 =((s2.match(new RegExp(array2[0],"g"))||[]).length);
+      //adding bit
+      count = (check<check2) ? count+=check:count+=check2;
+      array2=array2.join('');
+      //deducting bit
+      array2 = array2.replace(new RegExp(array2.charAt(0),"g"),"");
+      array2 = array2.split(""); 
+   }
+   return count;
+}
